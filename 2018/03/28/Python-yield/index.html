@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://shandylv.github.io">
-  <title>Tag: Python | Shandy&#39;s Blog</title>
+  <title>迭代生成器——yield | Shandy&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Shandy&#39;s Blog">
-<meta property="og:url" content="https://shandylv.github.io/tags/Python/index.html">
+  <meta name="description" content="官方文档基于Python版本 3.6.0 6.2.8. Generator expressions 迭代生成器可以理解为是一个循环迭代，可以在迭代中任意位置暂停循环并返回当前状态，然后继续循环。 类似Scrum敏捷迭代实施，在每个迭代的评审会后，暂停开发等工作，维持当前的状态（数据值、指针状态等），并对外返回这个迭代的最终产品（左侧代码执行结果），下一个迭代继续在这个迭代的基础上继续开发（ nex">
+<meta name="keywords" content="Python&#x2F;学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="迭代生成器——yield">
+<meta property="og:url" content="https://shandylv.github.io/2018/03/28/Python-yield/index.html">
 <meta property="og:site_name" content="Shandy&#39;s Blog">
+<meta property="og:description" content="官方文档基于Python版本 3.6.0 6.2.8. Generator expressions 迭代生成器可以理解为是一个循环迭代，可以在迭代中任意位置暂停循环并返回当前状态，然后继续循环。 类似Scrum敏捷迭代实施，在每个迭代的评审会后，暂停开发等工作，维持当前的状态（数据值、指针状态等），并对外返回这个迭代的最终产品（左侧代码执行结果），下一个迭代继续在这个迭代的基础上继续开发（ nex">
+<meta property="og:updated_time" content="2018-03-28T13:58:40.590Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Shandy&#39;s Blog">
+<meta name="twitter:title" content="迭代生成器——yield">
+<meta name="twitter:description" content="官方文档基于Python版本 3.6.0 6.2.8. Generator expressions 迭代生成器可以理解为是一个循环迭代，可以在迭代中任意位置暂停循环并返回当前状态，然后继续循环。 类似Scrum敏捷迭代实施，在每个迭代的评审会后，暂停开发等工作，维持当前的状态（数据值、指针状态等），并对外返回这个迭代的最终产品（左侧代码执行结果），下一个迭代继续在这个迭代的基础上继续开发（ nex">
   
     <link rel="alternative" href="/atom.xml" title="Shandy&#39;s Blog" type="application/atom+xml">
   
@@ -133,60 +138,165 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Python-yield" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/26/hello-world-1/" class="archive-article-date">
-  	<time datetime="2018-03-26T12:54:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-26</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/26/hello-world-1/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      迭代生成器——yield
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/03/28/Python-yield/" class="archive-article-date">
+  	<time datetime="2018-03-28T11:12:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h1><p>基于Python版本 3.6.0</p>
+<p><a href="[6. Expressions — Python 3.6.5rc1 documentation](https://docs.python.org/3/reference/expressions.html#generator-expressions">6.2.8. Generator expressions</a></p>
+<h1 id="迭代生成器"><a href="#迭代生成器" class="headerlink" title="迭代生成器"></a>迭代生成器</h1><p>可以理解为是一个循环迭代，可以在迭代中任意位置暂停循环并返回当前状态，然后继续循环。</p>
+<p>类似Scrum敏捷迭代实施，在每个迭代的评审会后，暂停开发等工作，维持当前的状态（数据值、指针状态等），并对外返回这个迭代的最终产品（左侧代码执行结果），下一个迭代继续在这个迭代的基础上继续开发（ <strong>next</strong>() 。yield就是用来返回提交这个产品的（返回值）</p>
+<h1 id="yield用法"><a href="#yield用法" class="headerlink" title="yield用法"></a>yield用法</h1><ul>
+<li>yield 后面只有一个参数，如 yield 123； yield b</li>
+<li>yiled 只能用在方法里</li>
+<li>yield 执行到最后时，返回None<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">def fab(max_v):</span><br><span class="line">    n, a, b = 0, 0, 1</span><br><span class="line">    while n &lt; max_v:</span><br><span class="line">        yield b # 执行到这里时返回b的值</span><br><span class="line">        a, b = b, a + b</span><br><span class="line">        n += 1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">for value in fab(5):</span><br><span class="line">    print(value)</span><br><span class="line">    </span><br><span class="line">运行结果：</span><br><span class="line">1</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">5</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="内建方法"><a href="#内建方法" class="headerlink" title="内建方法"></a>内建方法</h1><h2 id="next"><a href="#next" class="headerlink" title="next()"></a><strong>next</strong>()</h2><p>返回程序执行到 yield 语句时的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">gen = fab(5)</span><br><span class="line">while True:</span><br><span class="line">    print(gen.__next__())</span><br><span class="line">    print(next(gen))</span><br><span class="line">    </span><br><span class="line">Don&apos;t forget to clean up when &apos;close()&apos; is called.</span><br><span class="line">1</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">5</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;&lt;input&gt;&quot;, line 4, in &lt;module&gt;</span><br><span class="line">StopIteration</span><br></pre></td></tr></table></figure></p>
+<p> gen.<strong>next</strong>()  和  next(gen)  的功能是一样的。<br>并且当生成器执行完毕，再次执行next时，会跑出StopIteration异常。</p>
+<h2 id="send-arg"><a href="#send-arg" class="headerlink" title="send(arg)"></a>send(arg)</h2><p>向生成器传递一个值，这个值是yiled的处理结果。<br>即如果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 伪代码</span><br><span class="line">def count():</span><br><span class="line">	a = yield b</span><br><span class="line">	print(&quot;yield b的计算结果：&quot; + a)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gen = count()</span><br><span class="line">gen.send(5)</span><br></pre></td></tr></table></figure></p>
+<p>则会打印：<em>yield b的计算结果：5</em></p>
+<h2 id="throw-Type，value"><a href="#throw-Type，value" class="headerlink" title="throw(Type，value)"></a>throw(Type，value)</h2><p>向生成器传递一个异常，同时扔执行此轮的 yiled 。如果生成器中包含处理异常，则执行处理异常的程序。如果执行结束仍未处理异常，则将异常抛回给调用方。</p>
+<h2 id="close"><a href="#close" class="headerlink" title="close()"></a>close()</h2><ul>
+<li>在程序暂停时，执行 close() 关闭生成器，产生 GeneratorExit 异常，会被生成器方法的 except 捕捉。最后继续执行至生成器方法所有代码执行完成。</li>
+<li>如果关闭生成器后，还执行了 yield，则会抛出 RuntimeError 异常。</li>
+<li>所有没有处理的异常都会抛回调用方。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python/学习笔记</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://shandylv.github.io/2018/03/28/Python-yield/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/03/26/hello-world-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -209,9 +319,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
