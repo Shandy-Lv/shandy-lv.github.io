@@ -135,6 +135,136 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-python-operator" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/29/python-operator/">Python的|^&amp;运算</a>
+    </h1>
+  
+
+        
+        <a href="/2018/03/29/python-operator/" class="archive-article-date">
+  	<time datetime="2018-03-29T15:04:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="或、与、异或算法"><a href="#或、与、异或算法" class="headerlink" title="或、与、异或算法"></a>或、与、异或算法</h1><h2 id="或（-）"><a href="#或（-）" class="headerlink" title="或（|）"></a>或（|）</h2><ul>
+<li>0 | 0 = 0</li>
+<li>0 | 1 = 1</li>
+<li>1 | 0 = 1</li>
+<li>1 | 1 = 1<br>即有一个值为1，结果为1。</li>
+</ul>
+<h2 id="与（-amp-）"><a href="#与（-amp-）" class="headerlink" title="与（&amp;）"></a>与（&amp;）</h2><ul>
+<li>0 &amp; 0 = 0</li>
+<li>0 &amp; 1 = 0</li>
+<li>1 &amp; 0 = 0</li>
+<li>1 &amp; 1 = 1<br>只有两个值都为1时，结果才为1。</li>
+</ul>
+<h2 id="异或（-）"><a href="#异或（-）" class="headerlink" title="异或（^）"></a>异或（^）</h2><ul>
+<li>0 ^ 0 = 0</li>
+<li>0 ^ 1 = 1</li>
+<li>1 ^ 0 = 1</li>
+<li>1 ^ 1 = 0<br>两个值不同时，结果为1。</li>
+</ul>
+<h1 id="Python中的运算"><a href="#Python中的运算" class="headerlink" title="Python中的运算"></a>Python中的运算</h1><h2 id="二进制按位或运算"><a href="#二进制按位或运算" class="headerlink" title="二进制按位或运算"></a>二进制按位或运算</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def or_v(a, b):</span><br><span class="line">    print(&quot;输出结果：&quot;)</span><br><span class="line">    print(str(a) + &apos;+&apos; + str(b) + &apos;=&apos; + str((a|b)))    </span><br><span class="line"></span><br><span class="line">or_v(8,9)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输出结果：</span><br><span class="line">8|9=9</span><br></pre></td></tr></table></figure>
+<p>为什么8|9会是9呢？为什么不是8呢？<br>其实或运算是把数据换算成二进制后，按位进行或运算，打印出来的是把结果再转换成十进制了。<br>我们来看一下打印出来二进制是什么样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def or_v(a, b):</span><br><span class="line">    print(&quot;输出结果：&quot;)</span><br><span class="line">    print(str(bin(a)) + &apos;|&apos;) </span><br><span class="line">    print(str(bin(b)) + &apos;=&apos;)</span><br><span class="line">    print(str(bin((a|b))))  </span><br><span class="line">or_v(8,9)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输出结果：</span><br><span class="line">0b1000|</span><br><span class="line">0b1001=</span><br><span class="line">0b1001</span><br></pre></td></tr></table></figure>
+<p>为了方便对比，故意换行打印。<br>（最前面的0b表示二进制）可以看到8的二进制是1000，9的二进制是1001。按照对应位置的数字有一个1结果就是1，只有第一位和第四位是1，中间两位是0，得到1001，转换成十进制就是9。</p>
+<h2 id="二进制按位与计算"><a href="#二进制按位与计算" class="headerlink" title="二进制按位与计算"></a>二进制按位与计算</h2><p>和或运算相同，在二进制下进行与计算。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def and_v(a, b):</span><br><span class="line">    print(&quot;输出结果：&quot;)</span><br><span class="line">    print(str(bin(a)) + &apos;&amp;&apos;) </span><br><span class="line">    print(str(bin(b)) + &apos;=&apos;)</span><br><span class="line">    print(str(bin((a&amp;b))))  </span><br><span class="line">and_v(8,9)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输出结果：</span><br><span class="line">0b1000&amp;</span><br><span class="line">0b1001=</span><br><span class="line">0b1000</span><br></pre></td></tr></table></figure>
+<h2 id="二进制按位异或计算"><a href="#二进制按位异或计算" class="headerlink" title="二进制按位异或计算"></a>二进制按位异或计算</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def or_and_v(a, b):</span><br><span class="line">    print(&quot;输出结果：&quot;)</span><br><span class="line">    print(str(bin(a)) + &apos;^&apos;) </span><br><span class="line">    print(str(bin(b)) + &apos;=&apos;)</span><br><span class="line">    print(str(bin((a^b))))  </span><br><span class="line">or_and_v(8,9)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输出结果：</span><br><span class="line">0b1000^</span><br><span class="line">0b1001=</span><br><span class="line">0b1</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>但是，二进制计算对我们萌新来说实在是不太常用，这三个运算符还能做什么呢？</strong></p>
+<h1 id="Python中的集合运算"><a href="#Python中的集合运算" class="headerlink" title="Python中的集合运算"></a>Python中的集合运算</h1><h2 id="集合并（-）"><a href="#集合并（-）" class="headerlink" title="集合并（|）"></a>集合并（|）</h2><p>很好理解，集合的并集，把所有集合成员聚在一起成为一个新的集合。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m,n = &#123;123,456&#125;,&#123;456,789&#125;</span><br><span class="line">m|n</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;456, 123, 789&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="集合交（-amp-）"><a href="#集合交（-amp-）" class="headerlink" title="集合交（&amp;）"></a>集合交（&amp;）</h2><p>还是很好理解，集合的交集嘛，同时存在在每个集合里。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m,n = &#123;123,456&#125;,&#123;456,789&#125;</span><br><span class="line">m&amp;n</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;456&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="集合对称差（-）"><a href="#集合对称差（-）" class="headerlink" title="集合对称差（^）"></a>集合对称差（^）</h2><p>嗯，好像不太好理解。但是有了合集有了交集，接下来肯定是差集嘛。但是是对称差集，我独有的和你独有的并在一起。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m,n = &#123;123,456&#125;,&#123;456,789&#125;</span><br><span class="line">m^n</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;123, 789&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="集合差（-）"><a href="#集合差（-）" class="headerlink" title="集合差（-）"></a>集合差（-）</h2><p>知道了复杂的对称差，最简单的集合差呢？<br>就是减法啦。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m,n = &#123;123,456&#125;,&#123;456,789&#125;</span><br><span class="line">m-n</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;123&#125;</span><br></pre></td></tr></table></figure>
+<p>集合差运算和前三个的区别在于，顺序很重要。如果是 n-m，那么返回的结果就是{789}啦。</p>
+<h2 id="多个集合一起运算"><a href="#多个集合一起运算" class="headerlink" title="多个集合一起运算"></a>多个集合一起运算</h2><p>以上四个运算符都支持多个集合运算，合集、交集都很好理解。每一个参与运算的集合的所有元素合在一起得到结果集合与，或找到每个集合都拥有的元素，就是集合交。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">m, n, p = &#123;12,34&#125;,&#123;12,56&#125;,&#123;12,78&#125;</span><br><span class="line">m|n|p</span><br><span class="line">m&amp;n&amp;p</span><br><span class="line">&#123;12&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;34, 12, 78, 56&#125;</span><br><span class="line">&#123;12&#125;</span><br></pre></td></tr></table></figure>
+<p>但是集合对称差是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m, n, p = &#123;12,34&#125;,&#123;12,56&#125;,&#123;12,78&#125;</span><br><span class="line">m^n^p</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;56, 34, 12, 78&#125;</span><br></pre></td></tr></table></figure>
+<p>咦？为什么和集合并的结果一样呢？<br>因为 m^n^p 计算时，是先计算 m^n得到一个集合 a，再计算a^p。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">m, n, p = &#123;12,34&#125;,&#123;12,56&#125;,&#123;12,78&#125;</span><br><span class="line">a = m^n</span><br><span class="line">a^p</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;56, 34, 12, 78&#125;</span><br></pre></td></tr></table></figure>
+<p>集合差也一样啦，就不再细说啦。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">运算符</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">集合</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/29/python-operator/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Python-yield" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -400,6 +530,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">运算符</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">集合</a>
               </li>
             
             <div class="clearfix"></div>
