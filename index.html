@@ -156,8 +156,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="Invalid-HTTP-HOST"><a href="#Invalid-HTTP-HOST" class="headerlink" title="Invalid HTTP_HOST"></a>Invalid HTTP_HOST</h2><p>访问 Django 项目，在打开 DEBUG=True 时，显示以下信息：</p>
-<figure class="highlight plain"><figcaption><span>'bfe8b346.ngrok.io'. You may need to add 'bfe8b346.ngrok.io' to ALLOWED_HOSTS.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line">解决方法已经很明确的指示出来啦。</span><br><span class="line"></span><br><span class="line">## ALLOWED_HOSTS = []</span><br><span class="line">Django 的项目级setting.py 文件中，默认的是ALLOWED_HOSTS = []</span><br><span class="line">当不设置时，仅可以通过本地地址访问。</span><br><span class="line">所以可以把域名添加进来：</span><br><span class="line">```ALLOWED_HOSTS = [&apos;bfe8b346.ngrok.io&apos;]</span><br></pre></td></tr></table></figure>
-<p>这时候就只可以通过添加进来的域名访问啦，连 localhost 都不行，所以需要多个域名时，可以这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">或者直接这样：</span><br><span class="line">```ALLOWED_HOSTS = [&apos;*&apos;]</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">header: &apos;bfe8b346.ngrok.io&apos;. You may need to add &apos;bfe8b346.ngrok.io&apos; to ALLOWED_HOSTS.</span><br></pre></td></tr></table></figure>
+<p>解决方法已经很明确的指示出来啦。</p>
+<h2 id="ALLOWED-HOSTS"><a href="#ALLOWED-HOSTS" class="headerlink" title="ALLOWED_HOSTS = []"></a>ALLOWED_HOSTS = []</h2><p>Django 的项目级setting.py 文件中，默认的是ALLOWED_HOSTS = []<br>当不设置时，仅可以通过本地地址访问。<br>所以可以把域名添加进来：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALLOWED_HOSTS = [&apos;bfe8b346.ngrok.io&apos;]</span><br></pre></td></tr></table></figure></p>
+<p>这时候就只可以通过添加进来的域名访问啦，连 localhost 都不行，所以需要多个域名时，可以这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALLOWED_HOSTS = [&apos;bfe8b346.ngrok.io&apos;, &apos;localhost&apos;]</span><br></pre></td></tr></table></figure></p>
+<p>或者直接这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALLOWED_HOSTS = [&apos;*&apos;]</span><br></pre></td></tr></table></figure></p>
 <p>这样就是可以通过任意域名访问啦。</p>
 
       
@@ -644,15 +647,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">运算符</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">集合</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
               </li>
             
             <div class="clearfix"></div>
